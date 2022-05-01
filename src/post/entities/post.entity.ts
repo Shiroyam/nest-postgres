@@ -1,5 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  JoinTable,
+  ManyToMany,
+} from 'typeorm';
+import { User } from '../../user/entities/user.entity';
 @Entity('posts')
 export class Post {
   @PrimaryGeneratedColumn()
@@ -16,4 +22,8 @@ export class Post {
 
   @Column()
   text: string;
+
+  @ManyToMany(() => User)
+  @JoinTable()
+  user: User[];
 }
