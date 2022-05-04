@@ -12,8 +12,9 @@ export class PostService {
     private postRepository: Repository<Post>,
   ) {}
 
-  create(createPostDto: CreatePostDto) {
-    return this.postRepository.save(createPostDto);
+  create(createPostDto: CreatePostDto, userId: number) {
+    const data = { ...createPostDto, user: { id: userId } };
+    return this.postRepository.save(data);
   }
 
   findAll() {
